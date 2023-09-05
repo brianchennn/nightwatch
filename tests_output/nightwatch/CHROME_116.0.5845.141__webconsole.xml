@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="0"
+            tests="1">
+
+  <testsuite name="nightwatch.webconsole"
+    errors="0" failures="0" hostname="" id="" package="webconsole" skipped="0"
+    tests="1" time="27.41" timestamp="">
+  
+    <testcase name="Webconsle title test" classname="nightwatch.webconsole" time="13.71" assertions="2">
+
+    
+
+    
+    </testcase>
+  
+
+  
+
+    
+
+  
+  </testsuite>
+</testsuites>
