@@ -5,9 +5,9 @@
 
   <testsuite name="test.createSubscriber"
     errors="0" failures="0" hostname="" id="" package="createSubscriber" skipped="0"
-    tests="1" time="56.53" timestamp="">
+    tests="1" time="35.77" timestamp="">
   
-    <testcase name="Webconsle title test" classname="test.createSubscriber" time="28.27" assertions="3">
+    <testcase name="Webconsle title test" classname="test.createSubscriber" time="17.88" assertions="3">
 
     
 
