@@ -10,12 +10,13 @@ https://hackmd.io/gGFyAxZYTu6AffEDjVZH8A
 - nodejs v18.17.1
 
 ## Installation
+```
 git clone https://github.com/brianchennn/nightwatch
 cd nightwatch
 npm install
-
+```
 ## Testing
-npx nightwatch .\test\createSubscriber.ts
+`npx nightwatch .\test\createSubscriber.ts`
 
 ### Demo video
 [Create a subscriber test](https://youtu.be/Ry5Fy2J2fnw)
