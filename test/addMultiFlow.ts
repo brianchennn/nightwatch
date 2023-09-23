@@ -94,13 +94,16 @@ const home: NightwatchTests = {
       .pause(waitTime)
 
       // 按下 VIEW
-      .click('//tr[td[text()="' + IMSIPrefix + SUPI + '"]]/td[4]/button')
+      .click('//tr[td[text()="' + IMSIPrefix + SUPI + '"]]//td[button[text()="VIEW"]]/button')
       .pause(waitTime)
 
       
       // 確認 UE info 正確
       .getText('//tr[td[text()="SUPI (IMSI)"]]/td[2]', result => {
         browser.assert.equal(result.value, SUPI)
+      })
+      .getText('//tr[td[text()="MSISDN"]]/td[2]', result => {
+        browser.assert.equal(result.value, MSISDN)
       })
       .pause(waitTime)
 
