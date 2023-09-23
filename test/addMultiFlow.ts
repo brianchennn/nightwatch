@@ -7,7 +7,7 @@ const home: NightwatchTests = {
       backspaces.push('\u0008')
     }
 
-    const IMSI = 'imsi'
+    const IMSIPrefix = 'imsi-'
     const SUPI = '208930000007487'
     const MSISDN = '0917494749'
     const XPathSUPI = '//*[@id="SUPI (IMSI)"]//tr/td/div/div/input'
@@ -47,39 +47,40 @@ const home: NightwatchTests = {
       .pause(waitTime)
 
       // 在 DNN 為 internet 裡面按下 +FLOW RULE
-
-      .click('//*[@id="' + dnn1 + '-' + snssai1 + '"]/div/div[2]/button')
+      .click('//*[@id="' + snssai1 + '-' + dnn1 + '-AddFlowRuleArea"]/button')
       .pause(waitTime)
 
       // 修改 Flow Rule 1
-      .setValue('//*[@id="' + dnn1 + '-' + snssai1 + '-' + qosRef1 + '-IpFilter"]/tr/td/div/div/input', backspaces)
-      .setValue('//*[@id="' + dnn1 + '-' + snssai1 + '-' + qosRef1 + '-IpFilter"]/tr/td/div/div/input', "permit out ip from any to 10.60.0.1")
+      .setValue('//*[@id="' + snssai1 + '-' + dnn1 + '-' + qosRef1 + '-IpFilter"]/tr/td/div/div/input', backspaces)
+      .setValue('//*[@id="' + snssai1 + '-' + dnn1 + '-' + qosRef1 + '-IpFilter"]/tr/td/div/div/input', "permit out ip from any to 10.60.0.1")
       .pause(waitTime)
 
-      .setValue('//*[@id="' + dnn1 + '-' + snssai1 + '-' + qosRef1 + '-Precedence"]/tr/td/div/div/input', backspaces)
-      .setValue('//*[@id="' + dnn1 + '-' + snssai1 + '-' + qosRef1 + '-Precedence"]/tr/td/div/div/input', "121")
+      .setValue('//*[@id="' + snssai1 + '-' + dnn1 + '-' + qosRef1 + '-Precedence"]/tr/td/div/div/input', backspaces)
+      .setValue('//*[@id="' + snssai1 + '-' + dnn1 + '-' + qosRef1 + '-Precedence"]/tr/td/div/div/input', "121")
       .pause(waitTime)
 
-      .setValue('//*[@id="' + dnn1 + '-' + snssai1 + '-' + qosRef1 + '-5QI"]/tr/td/div/div/input', backspaces)
-      .setValue('//*[@id="' + dnn1 + '-' + snssai1 + '-' + qosRef1 + '-5QI"]/tr/td/div/div/input', "11")
+      .setValue('//*[@id="' + snssai1 + '-' + dnn1 + '-' + qosRef1 + '-5QI"]/tr/td/div/div/input', backspaces)
+      .setValue('//*[@id="' + snssai1 + '-' + dnn1 + '-' + qosRef1 + '-5QI"]/tr/td/div/div/input', "11")
       .pause(waitTime)
 
       // 修改 Flow Rule 3
-      .setValue('//*[@id="' + dnn1 + '-' + snssai1 + '-' + qosRef3 + '-IpFilter"]/tr/td/div/div/input', backspaces)
-      .setValue('//*[@id="' + dnn1 + '-' + snssai1 + '-' + qosRef3 + '-IpFilter"]/tr/td/div/div/input', "permit out ip from any to 10.60.0.2")
+      .setValue('//*[@id="' + snssai1 + '-' + dnn1 + '-' + qosRef3 + '-IpFilter"]/tr/td/div/div/input', backspaces)
+      .setValue('//*[@id="' + snssai1 + '-' + dnn1 + '-' + qosRef3 + '-IpFilter"]/tr/td/div/div/input', "permit out ip from any to 10.60.0.2")
       .pause(waitTime)
 
-      .setValue('//*[@id="' + dnn1 + '-' + snssai1 + '-' + qosRef3 + '-Precedence"]/tr/td/div/div/input', backspaces)
-      .setValue('//*[@id="' + dnn1 + '-' + snssai1 + '-' + qosRef3 + '-Precedence"]/tr/td/div/div/input', "123")
+      .setValue('//*[@id="' + snssai1 + '-' + dnn1 + '-' + qosRef3 + '-Precedence"]/tr/td/div/div/input', backspaces)
+      .setValue('//*[@id="' + snssai1 + '-' + dnn1 + '-' + qosRef3 + '-Precedence"]/tr/td/div/div/input', "123")
       .pause(waitTime)
 
-      .setValue('//*[@id="' + dnn1 + '-' + snssai1 + '-' + qosRef3 + '-5QI"]/tr/td/div/div/input', backspaces)
-      .setValue('//*[@id="' + dnn1 + '-' + snssai1 + '-' + qosRef3 + '-5QI"]/tr/td/div/div/input', "13")
+      .setValue('//*[@id="' + snssai1 + '-' + dnn1 + '-' + qosRef3 + '-5QI"]/tr/td/div/div/input', backspaces)
+      .setValue('//*[@id="' + snssai1 + '-' + dnn1 + '-' + qosRef3 + '-5QI"]/tr/td/div/div/input', "13")
       .pause(waitTime)
 
       // 在 snssai1 新增 dnn2 = IMS 
-      .setValue('//*[@id="' + snssai1 + '"]/div[2]/div[2]/div[1]/div/div/div/input', dnn2)
-      .click('//*[@id="' + snssai1 + '"]/div[2]/div[2]/div[2]/div/button')
+      //*[@id="01010203-AddDNN"]/div/div/div
+      .setValue('//*[@id="' + snssai1 + '-AddDNNInputArea"]/div/div/div/input', dnn2)
+      //*[@id="01112233-AddDNNButtonArea"]/div/button
+      .click('//*[@id="' + snssai1 + '-AddDNNButtonArea"]/div/button')
       .pause(waitTime)
 
       // 按下 Create
@@ -87,13 +88,13 @@ const home: NightwatchTests = {
       .pause(waitTime)
 
       // 確認是否有 imsi-208930000007487 這個 UE 的 table row
-      .isVisible('//tr[td[text()="' + IMSI + '-' + SUPI + '"]]', result => {
+      .isVisible('//tr[td[text()="' + IMSIPrefix + SUPI + '"]]', result => {
         browser.assert.equal(result.value, 1)
       })
       .pause(waitTime)
 
       // 按下 VIEW
-      .click('//tr[td[text()="' + IMSI + '-' + SUPI + '"]]/td[4]/button')
+      .click('//tr[td[text()="' + IMSIPrefix + SUPI + '"]]/td[4]/button')
       .pause(waitTime)
 
       
@@ -108,7 +109,7 @@ const home: NightwatchTests = {
       .pause(waitTime)
 
       // 刪除 UE
-      .click('//tr[td[text()="' + IMSI + '-' + SUPI + '"]]/td[3]/button')
+      .click('//tr[td[text()="' + IMSIPrefix + SUPI + '"]]/td[3]/button')
       .pause(waitTime)
 
       // 按下彈出式視窗的「確認」
