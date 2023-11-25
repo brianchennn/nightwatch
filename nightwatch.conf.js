@@ -54,7 +54,7 @@ module.exports = {
       
       webdriver: {
         start_process: true,
-        server_path: ''
+        server_path: '/usr/bin/chromedriver'
       },
       
     },
@@ -78,7 +78,7 @@ module.exports = {
 
       webdriver: {
         start_process: true,
-        server_path: '',
+        server_path: '/usr/bin/chromedriver',
         cli_args: [
           // --verbose
         ]
